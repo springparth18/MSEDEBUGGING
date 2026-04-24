@@ -56,8 +56,14 @@ export default function App() {
     setCartItems(prev => prev.map(i => i.id === id ? { ...i, qty } : i));
   }
 
-  const cartCount = cartItems.reduce((sum, i) => sum + i.count, 0);
-  const cartItemIds = new Set(cartItems.map(i => i.productId));
+  // Use qty because cart items store the quantity in that property.
+  // The previous code used `count`, which was always undefined and made the cart badge show 0.
+  const cartCount = cartItems.reduce((sum, i) => sum + i.qty, 0);
+
+  
+  // This fixes bug 5: ProductCard compares the product id against this set,
+  // so we must use the cart item's original `id`, not a non-existent `productId` field.
+  const cartItemIds = new Set(cartItems.map(i => i.id));
 
   return (
     <div className="app">
