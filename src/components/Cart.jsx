@@ -1,7 +1,9 @@
 import React from 'react';
 
 export default function Cart({ items, onRemove, onClose, onUpdateQty }) {
-  const total = items.reduce((sum, item) => sum + item.price * item.count, 0);
+  // Cart total should use item.qty because cart items store quantity in qty.
+  // Agar count use karenge to total 0 aa jayega, kyuki count undefined hota hai.
+  const total = items.reduce((sum, item) => sum + item.price * item.qty, 0);
 
   return (
     <>
@@ -30,7 +32,9 @@ export default function Cart({ items, onRemove, onClose, onUpdateQty }) {
                       <button
                         className="qty-btn"
                         onClick={() => onUpdateQty(item.id, item.qty - 1)}
-                        disabled={item.qty <= 0}
+                        // Jab qty 1 hai tab minus button disable kar do.
+                        // Nahi to user 0 ya negative value pe click kar lega aur total break ho sakta hai.
+                        disabled={item.qty <= 1}
                       >−</button>
                       <span className="qty-value">{item.qty}</span>
                       <button

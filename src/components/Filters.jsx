@@ -56,11 +56,12 @@ export default function Filters({ priceRange, onPriceChange, category, onCategor
         <h3 className="filter-label">Sort By</h3>
         <select className="sort-select" value={sortBy} onChange={e => onSortChange(e.target.value)}>
           <option value="default">Default</option>
-          <option value="price-desc">Price: Low to High</option>
-          <option value="price-asc">Price: High to Low</option>
+          <option value="price-asc">Price: Low to High</option>
+          <option value="price-desc">Price: High to Low</option>
           <option value="rating">Highest Rated</option>
           <option value="name">Name: A–Z</option>
         </select>
+        {/* Sort order ko sahi label se map kiya, taaki low-to-high aur high-to-low match kare */}
       </div>
 
       <p className="results-count">{totalResults} product{totalResults !== 1 ? 's' : ''} found</p>
