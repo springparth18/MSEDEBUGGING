@@ -34,7 +34,7 @@ export default function App() {
       default: break;
     }
     return list;
-  }, [searchQuery, priceRange, sortBy]);
+  }, [searchQuery, priceRange, sortBy, category]); //Bug 2 Added category to dependencies so filter updates when a category is selected
 
   function addToCart(product) {
     setCartItems(prev => {
@@ -46,7 +46,9 @@ export default function App() {
   }
 
   function removeFromCart(id) {
-    setCartItems(prev => prev.filter(i => i.id === id));
+    // Remove only the clicked item. The previous filter kept just the item instead of removing it.
+    //ADD BUG FIX 3: The previous filter logic was incorrect and kept only the item that should be removed. This fix ensures that the item with the matching id is removed from the cart.
+    setCartItems(prev => prev.filter(i => i.id !== id));
   }
 
   function updateQty(id, qty) {
