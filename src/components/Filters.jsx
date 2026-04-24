@@ -2,7 +2,7 @@ import React from 'react';
 
 const PRICE_RANGES = [
   { label: 'All Prices', min: 0, max: Infinity },
-  { label: 'Under ₹500', min: 0, max: 500 },
+  { label: 'Under ₹500', min: 0, max: 499 },
   { label: '₹500 – ₹1,000', min: 500, max: 1000 },
   { label: '₹1,000 – ₹2,000', min: 1000, max: 2000 },
   { label: '₹2,000 – ₹4,000', min: 2000, max: 4000 },
